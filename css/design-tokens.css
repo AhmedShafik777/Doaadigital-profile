@@ -1,12 +1,2 @@
 /* متغيرات التصميم الأصلية: تم فصلها تنظيميًا دون تغيير قيمها. */
-:root {
-    --burgundy: #D94F8A;
-    --dark: #A92E63;
-    --soft: #FFF0F6;
-    --mauve: #E58AB0;
-    --ink: #28232a;
-    --muted: #71666d;
-    --white: #fff;
-    --line: #F3D8E4;
-    --shadow: 0 14px 36px rgba(169, 46, 99, .10)
-}
+:root{--burgundy:#D94F8A;--dark:#A92E63;--soft:#FFF0F6;--mauve:#E58AB0;--ink:#28232a;--muted:#71666d;--white:#fff;--line:#F3D8E4;--shadow:0 14px 36px rgba(169,46,99,.10)}

@@ -6,7 +6,7 @@ window.PROFILE_DATA = Object.freeze({
   phoneDisplay: "012 7194 1596",
   phoneInternational: "+201271941596",
   whatsapp: "https://wa.me/201271941596",
-  whatsappMessage: "https://wa.me/201271941596?text=" + encodeURIComponent("مرحباً ميس دعاء، أرغب في معرفة المواعيد والأسعار"),
+    whatsappMessage: "https://wa.me/201271941596?text=" + encodeURIComponent("السلام عليكم، مرحباً ميس دعاء، أرغب في الاستفسار عن المواعيد والمجموعات والأسعار."),
   facebook: "",
   address: "أكاديمية طفل المستقبل، أعلى موبيليات كتانة، الدور الأول",
   mapUrl: "https://goo.gl/maps/o2cnNEGg1ANa8bCL8?g_st=aw",
