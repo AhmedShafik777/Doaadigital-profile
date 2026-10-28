@@ -231,6 +231,18 @@
       Tomorrow</span><a href="#home">العودة للأعلى ↑</a></footer>
   <script src="js/data.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+  <script>
+    (function () {
+      var box = document.getElementById("profileQr"), status = document.getElementById("profileQrStatus");
+      if (!box) return;
+      var url = location.origin + location.pathname;
+      if (!/^https?:\/\//i.test(url)) {status.textContent = "الرمز يظهر بعد نشر الصفحة على رابط عام."; return;}
+      if (typeof QRCode === "undefined") {status.textContent = "تعذر تحميل مكتبة QR؛ تحقق من اتصال الإنترنت."; return;}
+      try {
+        new QRCode(box, {text: url, width: 200, height: 200, colorDark: "#28232a", colorLight: "#ffffff", correctLevel: QRCode.CorrectLevel.H});
+      } catch (e) {status.textContent = "تعذر إنشاء الرمز.";}
+    })();
+  </script>
   <script src="js/script.js" defer></script>
 </body>
 
