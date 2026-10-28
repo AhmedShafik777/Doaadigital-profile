@@ -12,3 +12,15 @@ if (menuToggle && mainNav) {
     menuToggle.setAttribute("aria-expanded", "false");
   }));
 }
+
+// فتح وإغلاق التفاصيل داخل كل بطاقة خدمة.
+document.querySelectorAll(".details-toggle").forEach(button => {
+  button.addEventListener("click", () => {
+    const details = button.nextElementSibling;
+    const isExpanded = button.getAttribute("aria-expanded") === "true";
+    button.setAttribute("aria-expanded", String(!isExpanded));
+    details.hidden = isExpanded;
+    button.querySelector("span").textContent = isExpanded ? "＋" : "−";
+    button.firstChild.textContent = isExpanded ? "تفاصيل الخدمة " : "إخفاء التفاصيل ";
+  });
+});
