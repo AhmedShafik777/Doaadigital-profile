@@ -1,0 +1,130 @@
+<!doctype html>
+<html lang="ar" dir="rtl">
+
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>إنشاء QR للبروفايل</title>
+    <style>
+        :root {
+            --pink: #D94F8A;
+            --dark: #A92E63;
+            --pale: #FFF0F6
+        }
+
+        * {
+            box-sizing: border-box
+        }
+
+        body {
+            margin: 0;
+            background: #fff;
+            color: #30252b;
+            font-family: Arial, sans-serif;
+            line-height: 1.8
+        }
+
+        main {
+            max-width: 700px;
+            margin: 35px auto;
+            padding: 20px
+        }
+
+        .card {
+            padding: 30px;
+            border: 1px solid #F3D8E4;
+            border-radius: 22px;
+            box-shadow: 0 12px 32px #a92e6318
+        }
+
+        h1 {
+            color: var(--dark)
+        }
+
+        label {
+            display: block;
+            font-weight: bold;
+            margin: 18px 0 8px
+        }
+
+        input {
+            width: 100%;
+            padding: 14px;
+            border: 1px solid #e6c5d4;
+            border-radius: 10px;
+            direction: ltr
+        }
+
+        button,
+        a {
+            display: inline-block;
+            margin: 12px 5px 0 0;
+            padding: 12px 20px;
+            border-radius: 25px;
+            border: 0;
+            background: var(--pink);
+            color: #fff;
+            text-decoration: none;
+            cursor: pointer
+        }
+
+        .secondary {
+            background: white;
+            color: var(--dark);
+            border: 1px solid var(--pink)
+        }
+
+        #qr {
+            display: flex;
+            justify-content: center;
+            margin: 25px auto
+        }
+
+        #qr img,
+        #qr canvas {
+            max-width: 100%;
+            height: auto;
+            border: 10px solid white;
+            box-shadow: 0 0 0 1px #f3d8e4
+        }
+
+        .note {
+            padding: 14px;
+            background: var(--pale);
+            border-radius: 12px;
+            font-size: 14px;
+            color: #624653
+        }
+
+        #status {
+            color: var(--dark);
+            font-weight: bold;
+            min-height: 24px
+        }
+    </style>
+</head>
+
+<body>
+    <main>
+        <div class="card">
+            <p>Doaa Elbahrawy • English Teacher</p>
+            <h1>إنشاء رمز QR للبروفايل</h1>
+            <p>بعد نشر البروفايل على الإنترنت، أدخل رابطه العام هنا لتوليد رمز مستقل يمكنك تنزيله وطباعته.</p><label
+                for="url">الرابط العام للبروفايل</label><input id="url" type="url"
+                placeholder="https://your-profile-link.example"><button id="create">إنشاء QR</button><button
+                class="secondary" id="download" disabled>تنزيل صورة QR</button>
+            <div id="qr"></div>
+            <div id="status" aria-live="polite"></div>
+            <p class="note">يجب نشر البروفايل أولًا على رابط عام ثابت. هذه الصفحة لا تنشئ استضافة. يلزم اتصال بالإنترنت
+                لتحميل مكتبة QRCode.js.</p><a class="secondary" href="index.html">العودة إلى البروفايل</a>
+        </div>
+    </main>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/qrcodejs/1.0.0/qrcode.min.js"></script>
+    <script>
+        const input = document.getElementById('url'), qr = document.getElementById('qr'), status = document.getElementById('status'), download = document.getElementById('download');
+        document.getElementById('create').onclick = () => {const value = input.value.trim(); if (!/^https?:\/\//i.test(value)) {status.textContent = 'أدخل رابطًا عامًا يبدأ بـ https:// أو http://'; return;} if (typeof QRCode === 'undefined') {status.textContent = 'تعذر تحميل مكتبة QR؛ تحقق من الإنترنت.'; return;} qr.replaceChildren(); new QRCode(qr, {text: value, width: 280, height: 280, colorDark: '#30252b', colorLight: '#ffffff', correctLevel: QRCode.CorrectLevel.H}); download.disabled = false; status.textContent = 'تم إنشاء الرمز. اختبره بكاميرا الهاتف قبل الطباعة.';};
+        download.onclick = () => {const canvas = qr.querySelector('canvas'), img = qr.querySelector('img'), src = canvas ? canvas.toDataURL('image/png') : (img ? img.src : ''); if (!src) {status.textContent = 'أنشئ الرمز أولًا.'; return;} const a = document.createElement('a'); a.href = src; a.download = 'doaa-profile-qr.png'; a.click();};
+    </script>
+</body>
+
+</html>
